@@ -9,6 +9,11 @@ module.exports = {
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   plugins: ['react-refresh'],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off'
+    'indent': ['error', 2],
+    'semi': [2, 'always'],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-case-declarations': 'off',
+    'no-useless-escape': 'off'
   },
 }

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { emitServerEvent, onServerEvent } from './scripts/socket-io';
 import './App.css';
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     emitServerEvent('TEST', []);
@@ -33,7 +33,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
 export default App;
