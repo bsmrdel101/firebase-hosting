@@ -1,26 +1,42 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+const { createServer } = require('vite');
+const { Server } = require('socket.io');
 
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
-
-
-// Socket.io
-io.on('connection', (socket) => {
-  socket.on('TEST', () => {
-    io.emit('TEST');
+async function startServer() {
+  // Create Vite development server
+  const vite = await createServer({
+    server: {
+      middlewareMode: true,
+    },
   });
-});
 
-app.get("/api/hello", (_req, res) => {
-  res.json({ message: "Hello, world!" });
-});
+  app.use(vite.middlewares);
 
-const PORT = process.env.PORT || 8080;
+  // Socket.io setup
+  const server = http.createServer(app);
+  const io = new Server(server);
 
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log('=======================');
+  io.on('connection', (socket) => {
+    socket.on('TEST', () => {
+      io.emit('TEST');
+    });
+  });
+
+  app.get("/api/hello", (_req, res) => {
+    res.json({ message: "Hello, world!" });
+  });
+
+  const PORT = process.env.PORT || 8080;
+
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log('=======================');
+  });
+}
+
+startServer().catch((error) => {
+  console.error(error);
+  process.exit(1);
 });
