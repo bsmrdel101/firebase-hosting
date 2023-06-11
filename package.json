@@ -1,8 +1,11 @@
 {
   "name": "firebase-hosting",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "proxy": "http://localhost:8080",
+  "engines": {
+    "node": "19.8"
+  },
   "scripts": {
     "client": "vite",
     "server": "nodemon server/server.js",
