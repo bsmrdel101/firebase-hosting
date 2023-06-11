@@ -1,7 +1,7 @@
 import { io, Socket } from "socket.io-client";
 
 
-export let socket: Socket = io('http://localhost:8080', {
+export const socket: Socket = io('http://localhost:8080', {
   transports: ["websocket"],
 });
 
