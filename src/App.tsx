@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
-import { io, Socket } from "socket.io-client";
-import './App.css'
 import { emitServerEvent, onServerEvent } from './scripts/socket-io';
+import './App.css';
 
-export const socket: Socket = io();
 
 function App() {
   const [count, setCount] = useState(0)
@@ -38,4 +36,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

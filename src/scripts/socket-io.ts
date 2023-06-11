@@ -1,5 +1,9 @@
-import { socket } from "../App";
+import { io, Socket } from "socket.io-client";
 
+
+export let socket: Socket = io('http://localhost:8080', {
+  transports: ["websocket"],
+});
 
 export const emitServerEvent = (event: string, params: any[]) => {
   socket.emit(event, ...params);
